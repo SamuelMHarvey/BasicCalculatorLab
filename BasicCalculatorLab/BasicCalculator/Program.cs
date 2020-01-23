@@ -28,7 +28,7 @@ namespace BasicCalculator
 
             double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
 
-            Console.WriteLine("The wind chill is " + windSpeed);
+            Console.WriteLine("The wind chill is " + windChill);
         }
     }
 }
