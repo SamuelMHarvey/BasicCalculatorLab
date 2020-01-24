@@ -18,17 +18,17 @@ namespace BasicCalculator
 
             decimal dewPoint = actualTemp - 9m / 25m * (100 - relativeHumidity);
 
-            Console.WriteLine("The dew point is " + dewPoint);
+            Console.WriteLine("The dew point is " + dewPoint + " degrees Fahrenheit");
 
             //Wind Chill
 
-            Console.WriteLine("Enter the wind speed");
+            Console.WriteLine("Enter the wind speed in miles per hour");
 
             int windSpeed = int.Parse(Console.ReadLine());
 
             double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
 
-            Console.WriteLine("The wind chill is " + windChill);
+            Console.WriteLine("The wind chill is " + Math.Round(windChill, 2) + " degrees Fahrenheit");
         }
     }
 }
