@@ -16,15 +16,12 @@ namespace BasicCalculator
             int dewPoint;
 
             // ask user for temp
+            actualTemp = GetIntegerInput("Enter the temperature in Fahrenheit");
 
-            Console.WriteLine("Enter the temperature in Fahrenheit");
-            input = Console.ReadLine();
-            actualTemp = int.Parse(input);
+            // bool isInt = int.TryParse(input, out actualTemp);
 
             // ask user for relative humidity
-            Console.WriteLine("Enter the relative humidity");
-            input = Console.ReadLine();
-            relativeHumidity = int.Parse(input);
+            relativeHumidity = GetIntegerInput("Enter the relative humidity");
 
             // calculate the dew point
             dewPoint = actualTemp - 9 * (100 - relativeHumidity) / 25;
@@ -42,6 +39,19 @@ namespace BasicCalculator
 
             // print the wind chill
             Console.WriteLine("The wind chill is " + Math.Round(windChill, 2) + " degrees Fahrenheit");
+        }
+
+        // creating a method
+        static int GetIntegerInput(string prompt)
+        {
+            string input;
+            int result;
+            Console.WriteLine(prompt);
+
+            input = Console.ReadLine();
+            result = int.Parse(input);
+
+            return result;
         }
      
     }
