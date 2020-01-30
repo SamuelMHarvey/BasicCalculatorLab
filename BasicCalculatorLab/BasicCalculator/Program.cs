@@ -22,7 +22,7 @@ namespace BasicCalculator
                 // ask user for relative humidity
                 relativeHumidity = GetInput("Enter the relative humidity");
 
-                // Heat index equation HI = 0.5 * {T + 61.0 + [(T-68.0)*1.2] + (RH*0.094)}
+                // calculate heat index
                 double heatIndex = (0.5 * (actualTemp + 61 + (actualTemp - 68) * 1.2)) + (relativeHumidity * 0.094);
                 Console.WriteLine("The heat index is " + Math.Round(heatIndex, 2) + " degrees Fahrenheit");
             }
@@ -31,7 +31,7 @@ namespace BasicCalculator
                 // ask for the wind speed
                 windSpeed = GetInput("Enter the wind speed in miles per hour");
 
-                // calculate for the wind chill
+                // calculate the wind chill
                 double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
 
                 // print the wind chill
@@ -40,17 +40,15 @@ namespace BasicCalculator
      
         }
 
-        // creating a method
         static double GetInput(string prompt)
         {
             string input;
-            double result;
 
             Console.WriteLine(prompt);
             input = Console.ReadLine();
 
-            // is it a valid input?
-            bool validInput = double.TryParse(input, out result);
+            // is it a valid input? if so, put it in result
+            bool validInput = double.TryParse(input, out double result);
 
             // if it's not, try again
             while (validInput == false)
