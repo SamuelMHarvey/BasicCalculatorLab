@@ -6,19 +6,53 @@ namespace BasicCalculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("*** BASIC CALCULATOR ***");
+            Console.WriteLine("*** WEATHER CALCULATOR ***");
 
-            Console.WriteLine("Enter the first number");
+            // declare variables
+            string input;
+            int actualTemp;
+            int relativeHumidity;
+            int windSpeed;
+            int dewPoint;
 
-            // int.Parse will take a string data type and convert it to an int data type
-            int firstNumber = int.Parse(Console.ReadLine());
+            // ask user for temp
+            actualTemp = GetIntegerInput("Enter the temperature in Fahrenheit");
 
-            Console.WriteLine("Enter the second number");
-            int secondNumber = int.Parse(Console.ReadLine());
+            // bool isInt = int.TryParse(input, out actualTemp);
 
-            int sum = firstNumber + secondNumber;
+            // ask user for relative humidity
+            relativeHumidity = GetIntegerInput("Enter the relative humidity");
 
-            Console.WriteLine("The answer is " + sum);
+            // calculate the dew point
+            dewPoint = actualTemp - 9 * (100 - relativeHumidity) / 25;
+
+            // print the dew point
+            Console.WriteLine("The dew point is " + dewPoint + " degrees Fahrenheit");
+            
+            // ask for the wind speed
+            Console.WriteLine("Enter the wind speed in miles per hour");
+            input = Console.ReadLine();
+            windSpeed = int.Parse(input);
+
+            // calculate for the wind chill
+            double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
+
+            // print the wind chill
+            Console.WriteLine("The wind chill is " + Math.Round(windChill, 2) + " degrees Fahrenheit");
         }
+
+        // creating a method
+        static int GetIntegerInput(string prompt)
+        {
+            string input;
+            int result;
+            Console.WriteLine(prompt);
+
+            input = Console.ReadLine();
+            result = int.Parse(input);
+
+            return result;
+        }
+     
     }
 }
