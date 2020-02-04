@@ -12,32 +12,46 @@ namespace BasicCalculator
             double actualTemp;
             double relativeHumidity;
             double windSpeed;
+            bool userContinue = true;
 
-            // ask user for temp
-            actualTemp = GetInput("Enter the temperature in Fahrenheit");
-
-
-            if (actualTemp > 50)
+            while (userContinue)
             {
-                // ask user for relative humidity
-                relativeHumidity = GetInput("Enter the relative humidity");
+                // ask user for temp
+                actualTemp = GetInput("Enter the temperature in Fahrenheit");
 
-                // calculate heat index
-                double heatIndex = (0.5 * (actualTemp + 61 + (actualTemp - 68) * 1.2)) + (relativeHumidity * 0.094);
-                Console.WriteLine("The heat index is " + Math.Round(heatIndex, 2) + " degrees Fahrenheit");
+
+                if (actualTemp > 50)
+                {
+                    // ask user for relative humidity
+                    relativeHumidity = GetInput("Enter the relative humidity");
+
+                    // calculate heat index
+                    double heatIndex = (0.5 * (actualTemp + 61 + (actualTemp - 68) * 1.2)) + (relativeHumidity * 0.094);
+                    Console.WriteLine("The heat index is " + Math.Round(heatIndex, 2) + " degrees Fahrenheit");
+                }
+                else
+                {
+                    // ask for the wind speed
+                    windSpeed = GetInput("Enter the wind speed in miles per hour");
+
+                    // calculate the wind chill
+                    double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
+
+                    // print the wind chill
+                    Console.WriteLine("The wind chill is " + Math.Round(windChill, 2) + " degrees Fahrenheit");
+                }
+
+                
+                Console.WriteLine("Do you want to enter another temperature? Write yes or no");
+                string yesorno = Console.ReadLine();
+                if (yesorno != "yes")
+                {
+                    break;
+                }
+               
             }
-            else
-            {
-                // ask for the wind speed
-                windSpeed = GetInput("Enter the wind speed in miles per hour");
-
-                // calculate the wind chill
-                double windChill = 35.74 + 0.6215 * actualTemp - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * actualTemp * Math.Pow(windSpeed, 0.16);
-
-                // print the wind chill
-                Console.WriteLine("The wind chill is " + Math.Round(windChill, 2) + " degrees Fahrenheit");
-            }
-     
+            
+            Console.WriteLine(Environment.NewLine + "Have a good day!");
         }
 
         static double GetInput(string prompt)
